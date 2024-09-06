@@ -72,7 +72,7 @@ def main():
     args = parser.parse_args()
 
     if args.singer:
-       artists = [artist.strip() for artist in args.singer.split(',')]
+        artists = [artist.strip() for artist in args.singer.split(',')]
     else:
         artists = input('가수명을 입력해주세요. 여러 명을 입력할 경우 쉼표로 구분해주세요. \n >>>').split(',')
         artists = [artist.strip() for artist in artists]
@@ -80,24 +80,23 @@ def main():
     driver = initialize_driver()
     driver.get("https://www.tjmedia.com/tjsong/song_search.asp")
 
-    csv_file = open('tj_songs_by_artist.csv', 'w', newline='', encoding='utf-8')
-    csv_writer = csv.writer(csv_file)
-    csv_writer.writerow(['곡번호', '곡제목', '가수', '작사', '작곡'])
-
     for artist in artists:
         print(f"{artist} 검색 중...")
         results = search_and_extract(driver, artist)
         if results:
-            for result in results:
-                csv_writer.writerow(result)
-            print(f"{artist}의 {len(results)}곡을 크롤링 완료")
+            filename = f'tj_songs_by_{artist.replace(" ", "_")}.csv'
+            with open(filename, 'w', newline='', encoding='utf-8') as csv_file:
+                csv_writer = csv.writer(csv_file)
+                csv_writer.writerow(['곡번호', '곡제목', '가수', '작사', '작곡'])
+                for result in results:
+                    csv_writer.writerow(result)
+            print(f"{artist}의 {len(results)}곡을 크롤링 완료. 파일명: {filename}")
         else:
             print(f"{artist}의 검색 결과가 없습니다.")
 
         time.sleep(random.uniform(3, 7))
 
     driver.quit()
-    csv_file.close()
     print("모든 가수 크롤링 완료")
 
 if __name__ == "__main__":
