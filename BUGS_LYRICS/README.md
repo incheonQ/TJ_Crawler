@@ -21,7 +21,7 @@
 1. 이 저장소를 클론하거나 다운로드합니다.
 2. Chrome 브라우저가 설치되어 있는지 확인합니다.
 3. Chrome WebDriver를 다운로드합니다:
-   - [Chrome for Testing](https://googlechromelabs.github.io/chrome-for-testing/) 페이지에서 사용 중인 Chrome 버전에 맞는 WebDriver를 다운로드합니다.
+   - [ChromeDriver](https://developer.chrome.com/docs/chromedriver/downloads?hl=ko) 혹은 [Chrome for Testing](https://googlechromelabs.github.io/chrome-for-testing/) 페이지에서 사용 중인 Chrome 버전에 맞는 WebDriver를 다운로드합니다.
    - 다운로드한 WebDriver를 시스템 경로에 추가하거나, 스크립트와 같은 디렉토리에 위치시킵니다.
 4. 필요한 Python 패키지를 설치합니다:
 
